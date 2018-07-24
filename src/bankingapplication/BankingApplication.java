@@ -118,7 +118,7 @@ public class BankingApplication extends JFrame {
         addAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                //call the add class
+                //call to modal to enter details
                 
             }
         });
@@ -135,7 +135,7 @@ public class BankingApplication extends JFrame {
         deleteAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                //call the delete class
+                //call to request delete modal 
                 
             }
         });
@@ -152,7 +152,7 @@ public class BankingApplication extends JFrame {
         updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                //call the update class
+                //call to update modal
                 
             }
         });
@@ -169,7 +169,7 @@ public class BankingApplication extends JFrame {
         displayAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                //call the display class
+                //call to display details modal
                 
             }
         });
