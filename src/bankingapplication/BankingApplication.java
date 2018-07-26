@@ -8,6 +8,7 @@ package bankingapplication;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -51,10 +52,12 @@ public class BankingApplication extends JFrame {
            
     }
     
-    private void initComponents() {   
+    private void initComponents() {  
         
         //java.awt.GridBagConstraints gridBagConstraints;
         GridBagConstraints c = new GridBagConstraints();
+        
+        
         
         mainPanel = new javax.swing.JPanel();
         addAccountLabel = new javax.swing.JLabel();
@@ -67,7 +70,6 @@ public class BankingApplication extends JFrame {
         updateAccountButton = new javax.swing.JButton();
         displayAccountButton = new javax.swing.JButton();
         
-
         setTitle("Banking Management");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -84,6 +86,7 @@ public class BankingApplication extends JFrame {
         
         c.gridx = 0;
         c.gridy = 0;
+        c.insets = new Insets(0, 0, 10, 0);
         mainPanel.add(addAccountLabel, c);
         
         deleteAccountLabel.setText("Delete Account Details  ");
@@ -112,6 +115,7 @@ public class BankingApplication extends JFrame {
         addAccountButton.setText("Add Account");
         addAccountButton.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         
+        
         addAccountButton.setPreferredSize(new Dimension(200, 30));
         addAccountButton.setToolTipText("Add account.");
         
@@ -119,14 +123,17 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to modal to enter details
+                InputModal inputModal = new InputModal();
+                               
                 
             }
         });
 
         c.gridx = 1;
         c.gridy = 0;
+        //c.insets = new Insets(0, 0, 10, 0);
         mainPanel.add(addAccountButton, c);
-        
+                
         deleteAccountButton.setText("Delete Account");
         deleteAccountButton.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         deleteAccountButton.setPreferredSize(new Dimension(200, 30));
@@ -136,6 +143,8 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to request delete modal 
+                InputModal inputModal = new InputModal();
+                
                 
             }
         });
@@ -143,6 +152,8 @@ public class BankingApplication extends JFrame {
         c.gridx = 1;
         c.gridy = 1;
         mainPanel.add(deleteAccountButton, c);
+        
+        
         
         updateAccountButton.setText("Update Account");
         updateAccountButton.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
@@ -153,6 +164,7 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to update modal
+                InputModal inputModal = new InputModal();
                 
             }
         });
@@ -170,6 +182,7 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to display details modal
+                InputModal inputModal = new InputModal();
                 
             }
         });
