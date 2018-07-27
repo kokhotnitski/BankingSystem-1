@@ -45,7 +45,7 @@ class showModal extends JFrame {
     private final JLabel label2;
     private final JLabel label3;
     
-    private final JButton addAppointmentButton;
+    private final JButton addDetails;
     
     public showModal(){
     
@@ -75,10 +75,10 @@ class showModal extends JFrame {
         InputModal.textField3 = new JTextField(10);
         add(InputModal.textField3);
         
-        //this is a button to add another appointment
-        addAppointmentButton = new JButton("Add details");
-        addAppointmentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        add(addAppointmentButton);
+        //this is a button to submit details
+        addDetails = new JButton("Add details");
+        addDetails.setAlignmentX(Component.CENTER_ALIGNMENT);
+        add(addDetails);
         
         
         

@@ -6,7 +6,7 @@
 package bankingapplication;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Point;
