@@ -57,8 +57,6 @@ public class BankingApplication extends JFrame {
         //java.awt.GridBagConstraints gridBagConstraints;
         GridBagConstraints c = new GridBagConstraints();
         
-        
-        
         mainPanel = new javax.swing.JPanel();
         addAccountLabel = new javax.swing.JLabel();
         deleteAccountLabel = new javax.swing.JLabel();
@@ -143,7 +141,7 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to request delete modal 
-                InputModal inputModal = new InputModal();
+                //Todo Create modal to delete details
                 
                 
             }
@@ -182,7 +180,7 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to display details modal
-                InputModal inputModal = new InputModal();
+                //Todo Create modal to diplat details
                 
             }
         });

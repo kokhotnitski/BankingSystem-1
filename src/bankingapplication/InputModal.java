@@ -57,21 +57,24 @@ class showModal extends JFrame {
         //this is a label
         label1 = new JLabel("Start time   ");
         add(label1);
-        //this is a textfiels to input values
+        
+        //this is a textfield to input values
         InputModal.textField1 = new JTextField(10);
         add(InputModal.textField1); // add textField1 to JFrame
         
          //this is a label
         label2 = new JLabel("End time     ");
         add(label2);
-        //this is a textfiels to input values
+        
+        //this is a textfield to input values
         InputModal.textField2 = new JTextField(10);
         add(InputModal.textField2);
         
          //this is a label
         label3 = new JLabel("Description");
         add(label3);
-        //this is a textfiels to input values
+        
+        //this is a textfield to input values
         InputModal.textField3 = new JTextField(10);
         add(InputModal.textField3);
         
@@ -79,8 +82,6 @@ class showModal extends JFrame {
         addDetails = new JButton("Add details");
         addDetails.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(addDetails);
-        
-        
         
         //this a a eventhanlder that monitors any click action on the button
         AddAppointmentButtonHandler addAppointmentButtonHandler = new AddAppointmentButtonHandler();
@@ -104,7 +105,7 @@ class AddAppointmentButtonHandler implements ActionListener
     @Override
     public void actionPerformed(ActionEvent event) {
         
-       
+       //Todo pull in abstract class to add , update
     }
     
 }
