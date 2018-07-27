@@ -84,7 +84,7 @@ class showModal extends JFrame {
         
         //this a a eventhanlder that monitors any click action on the button
         AddAppointmentButtonHandler addAppointmentButtonHandler = new AddAppointmentButtonHandler();
-        addAppointmentButton.addActionListener(addAppointmentButtonHandler);
+        addDetails.addActionListener(addAppointmentButtonHandler);
         
             
 
