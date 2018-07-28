@@ -42,7 +42,7 @@ public class AddModal extends JFrame {
     
     public void showModal(){
         
-        
+        //still busy wtih this development
         
         setLayout(new FlowLayout(FlowLayout.LEFT, 20, 10));
 
