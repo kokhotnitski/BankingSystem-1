@@ -9,8 +9,8 @@ package bankingapplication;
 public class ChequingAccount extends Account {
     private double amount;
     
-    public ChequingAccount(int accountID, int branchID, 
-            double amount) {
+    public ChequingAccount(int accountID, int branchID, double amount) 
+    {
         super(accountID, "Chequing", branchID);
         //TODO: Insert applicable exceptions here
         this.amount = amount;

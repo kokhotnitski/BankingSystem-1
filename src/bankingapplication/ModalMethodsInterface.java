@@ -9,6 +9,10 @@ package bankingapplication;
  *
  * @author jeremye
  */
-class TextFieldFrame {
+public interface ModalMethodsInterface {
+    public void AddModal();
+    public void DeleteModal();
+    public void UpdateModal();
+    public void DidsplayModal();
     
 }

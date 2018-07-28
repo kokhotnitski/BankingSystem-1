@@ -4,7 +4,7 @@
  26 July 2018
  This package uses JDK v1.8.0_171
  */
-package bankingsystem;
+package bankingapplication;
 
 import java.util.Scanner;
 
@@ -51,10 +51,8 @@ public class BankingSystemTest {
         System.out.println("Program terminated.");
     }//End of method inputMenu
     
-    public static int addAccount(Scanner input, int accountNo, 
-            AccountList accts){
-        int status = 0;
-        Account acc;
+    public static int addAccount(Scanner input, int accountNo, AccountList accts){int status = 0; Account acc;
+            
         do {
             System.out.print("Please enter the type of account:");
             String command = input.nextLine(); 

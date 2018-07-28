@@ -4,7 +4,7 @@
  26 July 2018
  This package uses JDK v1.8.0_171
  */
-package bankingsystem;
+package bankingapplication;
 
 public interface BankOperations {
     public void addAccount(Account a);

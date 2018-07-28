@@ -4,7 +4,7 @@
  26 July 2018
  This package uses JDK v1.8.0_171
  */
-package bankingsystem;
+package bankingapplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +25,7 @@ public class AccountList implements BankOperations {
     @Override
     public void deleteAccount(Account a) {
         a.delete();
-        accounts.removeIf((Account acc) -> acc.getAccountID() == 
-                a.getAccountID());
+        accounts.removeIf((Account acc) -> acc.getAccountID() == a.getAccountID());
     }
     
     //TODO: Finish this method

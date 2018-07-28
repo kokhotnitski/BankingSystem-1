@@ -20,6 +20,7 @@ import javax.swing.SwingUtilities;
  * @author jeremye
  */
 public class BankingApplication extends JFrame {
+    AccountList accts = new AccountList(); //List for all the accounts
     
      /**
      * @param args the command line arguments
@@ -54,7 +55,6 @@ public class BankingApplication extends JFrame {
     
     private void initComponents() {  
         
-        //java.awt.GridBagConstraints gridBagConstraints;
         GridBagConstraints c = new GridBagConstraints();
         
         mainPanel = new javax.swing.JPanel();
@@ -121,7 +121,9 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to modal to enter details
-                InputModal inputModal = new InputModal();
+                InputModals inputModal = new InputModals(accts, "add");
+                inputModal.AddModal();
+                
                                
                 
             }
@@ -141,7 +143,8 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to request delete modal 
-                //Todo Create modal to delete details
+                InputModals inputModal = new InputModals(accts, "delete");
+                inputModal.DeleteModal();
                 
                 
             }
@@ -162,7 +165,8 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to update modal
-                InputModal inputModal = new InputModal();
+                InputModals inputModal = new InputModals(accts, "update");
+                inputModal.UpdateModal();
                 
             }
         });
@@ -180,7 +184,8 @@ public class BankingApplication extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 //call to display details modal
-                //Todo Create modal to diplat details
+                InputModals inputModal = new InputModals(accts, "display");
+                inputModal.DidsplayModal();
                 
             }
         });
