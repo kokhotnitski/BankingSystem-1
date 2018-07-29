@@ -18,20 +18,19 @@ public class AccountList implements BankOperations {
     
     @Override
     public void addAccount(Account a) {
-        a.add();
         accounts.add(a);
     }
     
     @Override
     public void deleteAccount(Account a) {
-        a.delete();
         accounts.removeIf((Account acc) -> acc.getAccountID() == a.getAccountID());
     }
     
-    //TODO: Finish this method
     @Override
-    public void updateAccount(Account a) {
-        a.update();
+    public void updateAccount(Account a, int branchID,
+            double amount) {
+        a.setBranchID(branchID);
+        a.setAmount(amount);
     }
     
     public Account getAccountViaID(int accID) {
