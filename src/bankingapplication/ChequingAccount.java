@@ -7,41 +7,41 @@
 package bankingapplication;
 
 public class ChequingAccount extends Account {
-    private double amount;
+    
+    private String accountType;
     
     public ChequingAccount(int accountID, int branchID, double amount) 
     {
-        super(accountID, "Chequing", branchID);
-        //TODO: Insert applicable exceptions here
-        this.amount = amount;
+        super(accountID, branchID, amount);
+        accountType = "Chequing";
     }
     
-    public double getAmount() {
-        return amount;
+    public String getAccountType() {
+        return accountType;
     }
     
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
-    
-    //TODO: Add string output for the inherited methods...
-    @Override
-    public void add() { 
-        //TODO: here
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
     
     @Override
-    public void update() {    
-        //TODO: here
+    public String add() { 
+        return String.format("%s has been added.", toString());
     }
     
     @Override
-    public void delete() {   
-        //TODO: and here
+    public String update() {    
+        return String.format("%s is now the current account.", toString());
+    }
+    
+    @Override
+    public String delete() {   
+        return String.format("%s has been deleted.", toString());
     }
     
     @Override
     public String toString() {
-        return String.format("%s, amount: %.2f", super.toString(), getAmount());
+        return String.format("%s of type %s", super.toString(), 
+                getAccountType());
     }
 }
