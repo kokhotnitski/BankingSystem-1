@@ -7,37 +7,48 @@
 package bankingapplication;
 
 public abstract class Account {
-    private final int accountID;
-    private final String accountType;
-    private final int branchID;
+    private int accountID; 
+    private int branchID;
+    private double amount;
     
     //constructor
-    public Account(int accountID, String accountType, int branchID) {
+    public Account(int accountID, int branchID, double amount) {
         this.accountID = accountID;
-        this.accountType = accountType;
         this.branchID = branchID;
+        this.amount = amount;
     }
     
     public int getAccountID() {
         return accountID;
     }
     
-    public String getAccountType() {
-        return accountType;
-    }
-    
     public int getBranchID() {
         return branchID;
     }
     
-    public abstract void add();
-    public abstract void update();
-    public abstract void delete();
+    public double getAmount() {
+        return amount;
+    }
     
-    //TODO: include methods from interface to work on database.
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
+    }
+    
+    public void setBranchID(int branchID) {
+        this.branchID = branchID;
+    }
+    
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+    
+    public abstract String add();
+    public abstract String update();
+    public abstract String delete();
+    
     @Override
     public String toString() {
-        return String.format("Account: %d of type %s from branch %d", accountID,
-        accountType, branchID);
+        return String.format("Account: %d from branch %d, amount: %.2f", 
+                getAccountID(), getBranchID(), getAmount());
     }
 }
