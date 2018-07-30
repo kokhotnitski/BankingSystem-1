@@ -26,7 +26,7 @@ public class BankingApplication extends JFrame {
     AccountList accts = new AccountList(); //List for all the accounts
 
     String[] columns = new String[] {
-            "accountID", "accountType", "branchID"
+            "account No", "accountType", "branch Name"
         };
     DefaultTableModel model = new DefaultTableModel(columns,0);
     JTable table = new JTable(model);
@@ -71,7 +71,6 @@ public class BankingApplication extends JFrame {
         addAccountButton = new javax.swing.JButton();
         deleteAccountButton = new javax.swing.JButton();
         updateAccountButton = new javax.swing.JButton();
-        displayAccountButton = new javax.swing.JButton();
         
         setTitle("Banking Management");
         addWindowListener(new java.awt.event.WindowAdapter() {

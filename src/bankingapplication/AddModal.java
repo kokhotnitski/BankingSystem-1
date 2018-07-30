@@ -86,15 +86,20 @@ class showFrame extends JFrame {
             
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                int accountNo = AddModal.convertToInteger(AddModal.textField1.getText());
-                int branchID = AddModal.convertToInteger(AddModal.textField2.getText());
-                Double amt = AddModal.convertToDouble(AddModal.textField3.getText());
+                //this still has to be created with the class waiting for Kirill
+                int accountNo = 123456;
+                int branchId = 1111111;
+                //***********************************************
                 
-                //call to modal to enter details
-                Account acc = new ChequingAccount(accountNo, branchID, amt);
+                String accountType = AddModal.textField1.getText();
+                Double amount = AddModal.convertToDouble(AddModal.textField3.getText());
+                
+                //insert data into arraylist
+                Account acc = new ChequingAccount(accountNo, branchId, amount);
                 accList.addAccount(acc);
                 
-                String[] row = {AddModal.textField1.getText(),AddModal.textField2.getText(),AddModal.textField3.getText()};
+                //add imput values to the table
+                String[] row = {"123456" , accountType, AddModal.textField3.getText()};
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 model.addRow(row);
                 
