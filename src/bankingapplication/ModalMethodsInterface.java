@@ -14,6 +14,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public interface ModalMethodsInterface {
     public void AddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model);
-    public void UpdateModal(AccountList accList, String modalType, JTable table, DefaultTableModel model);
+    public void UpdateModal(AccountList accList, Account acc, JTable table, DefaultTableModel model, int rowIndex);
         
 }

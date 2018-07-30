@@ -21,15 +21,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jeremye
  */
-public class AddModal extends DataTypeConvertor{
+public class UpdateModal {
     
     static JTextField textField1;
     static JTextField textField2;
     static JTextField textField3;
      
-    public void showAddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model){
+    public void showUpdateModal(AccountList accList, Account acc, JTable table, DefaultTableModel model, int rowIndex){
                 
-        showFrame textFieldFrame = new showFrame(accList, modalType, table, model);
+        showUpdateFrame textFieldFrame = new showUpdateFrame(accList, acc, table, model, rowIndex);
         textFieldFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         textFieldFrame.setResizable(false);
         textFieldFrame.setSize(250, 300);
@@ -38,19 +38,19 @@ public class AddModal extends DataTypeConvertor{
     }
     
 }
-class showFrame extends JFrame {
+
+class showUpdateFrame extends JFrame {
     
     private final  JLabel label1;
     private final  JLabel label2;
     private final  JLabel label3;
     private final  JButton addDetails;
     
-    public showFrame(AccountList accList, String modalType, JTable table, DefaultTableModel model){
+    public showUpdateFrame(AccountList accList, Account acc, JTable table, DefaultTableModel model, int rowIndex){
         
         //still busy wtih this development
         
         setLayout(new FlowLayout(FlowLayout.LEFT, 20, 10));
-
         
         //this is a label
         label1 = new JLabel("Type of account:");
@@ -58,7 +58,7 @@ class showFrame extends JFrame {
         
         //this is a textfield to input values
         AddModal.textField1 = new JTextField(10);
-        add(AddModal.textField1); // add textField1 to JFrame
+        add(AddModal.textField1); // add textField1 to J
         
          //this is a label
         label2 = new JLabel("Enter the amount");
@@ -76,8 +76,11 @@ class showFrame extends JFrame {
         AddModal.textField3 = new JTextField(10);
         add(AddModal.textField3);
         
+        //this is to preset the values at the text fields
+        setText(acc, model, rowIndex);
+        
         //this is a button to submit details
-        addDetails = new JButton("Submit");
+        addDetails = new JButton("Update");
         addDetails.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(addDetails);
         
@@ -89,7 +92,9 @@ class showFrame extends JFrame {
                 
                 boolean status = true; //control for adding the data
                 
-                int accountNo = BankingApplication.getAccountNo();
+                accList.deleteAccount(acc);
+                
+                int accountNo = acc.getAccountID();
                 int branchId = AddModal.convertToInteger(AddModal.textField3.getText());
                 Double amount = AddModal.convertToDouble(AddModal.textField2.getText());
                 String accountType = AddModal.textField1.getText();
@@ -123,9 +128,12 @@ class showFrame extends JFrame {
                         AddModal.textField3.getText(), 
                         AddModal.textField2.getText()};
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
-                    model.addRow(row);
-                    BankingApplication.setAccountNo(++accountNo);
+                    
+                    model.removeRow(rowIndex);
+                    model.insertRow(rowIndex, row);
+                    
                     dispose();
+                    
                 } else {
                     JOptionPane.showMessageDialog(null, "The inputted account "
                             + "type is unknown.", "Unknown account type", 
@@ -136,6 +144,34 @@ class showFrame extends JFrame {
         
     }
     
+    private void setText(Account acc, DefaultTableModel model, int rowIndex){
+        
+        String accountType  = model.getValueAt(rowIndex, 1).toString();
+        
+        if("chequing".equals(accountType)){
+            ChequingAccount chequeAcc = (ChequingAccount) acc;
+            AddModal.textField1.setText(chequeAcc.getAccountType());
+        }
+        if("credit".equals(accountType)){
+            CreditAccount creditAcc = (CreditAccount) acc;
+            AddModal.textField1.setText(creditAcc.getAccountType());
+        }
+        if("loan".equals(accountType)){
+            LoanAccount loanAcc = (LoanAccount) acc;
+            AddModal.textField1.setText(loanAcc.getAccountType());
+        }
+        if("savings".equals(accountType)){
+            SavingsAccount savingAcc = (SavingsAccount) acc;
+            AddModal.textField1.setText(savingAcc.getAccountType());
+        }
+        
+        AddModal.textField2.setText(AddModal.convertToString(acc.getAmount()));
+        AddModal.textField3.setText(AddModal.convertToString(acc.getBranchID()));
+
+        
+        
+    }
+    
     void setLocation() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -143,5 +179,3 @@ class showFrame extends JFrame {
     }
 
 }
-
-

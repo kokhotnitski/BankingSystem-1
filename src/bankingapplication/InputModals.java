@@ -27,10 +27,10 @@ public class InputModals implements ModalMethodsInterface {
     }
 
     @Override
-    public void UpdateModal(AccountList accList, String modalType, JTable table, DefaultTableModel model) {
-        AddModal addModal = new AddModal();
-        addModal.showAddModal(accList, modalType, table, model);
-        //addModal.showModal();
+    public void UpdateModal(AccountList accList, Account acc, JTable table, DefaultTableModel model, int rowIndex) {
+        UpdateModal addModal = new UpdateModal();
+        addModal.showUpdateModal(accList, acc, table, model, rowIndex);
+        
     }
    
 }

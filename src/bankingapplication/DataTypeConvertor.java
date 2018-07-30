@@ -34,6 +34,14 @@ public abstract class DataTypeConvertor {
         return Double.parseDouble(inputValue);
     }
     
+    public static String convertToString(Double inputValue){
+        return Double.toString(inputValue);
+    }
+    
+    public static String convertToString(int inputValue){
+        return Integer.toString(inputValue);
+    }
+    
 }
 
 

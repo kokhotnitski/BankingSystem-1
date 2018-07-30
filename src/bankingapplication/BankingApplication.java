@@ -118,10 +118,14 @@ public class BankingApplication extends JFrame {
         deleteAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
+                //remowe account from table
                 int rowIndex = table.getSelectedRow();
                 model.removeRow(rowIndex);
-                //still todo
-                //accts.deleteAccount();
+                
+                //remove account from arraylist
+                int accountNo = AddModal.convertToInteger(model.getValueAt(rowIndex, 0).toString());
+                Account acc = accts.getAccountViaID(accountNo);
+                accts.deleteAccount(acc);
                 
                 
             }
@@ -132,7 +136,6 @@ public class BankingApplication extends JFrame {
         mainPanel.add(deleteAccountButton, c);
         
         
-        
         updateAccountButton.setText("Update Account");
         updateAccountButton.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         updateAccountButton.setPreferredSize(new Dimension(200, 30));
@@ -141,9 +144,17 @@ public class BankingApplication extends JFrame {
         updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
+                //get value account from table
+                int rowIndex = table.getSelectedRow();
+                                                
+                //get account from arraylist
+                int accountNo = AddModal.convertToInteger(model.getValueAt(rowIndex, 0).toString());
+                Account acc = accts.getAccountViaID(accountNo);
+                
+                
                 //call to update modal
-                //InputModals inputModal = new InputModals(accts, "update", table, model);
-                //inputModal.UpdateModal();
+                InputModals inputModal = new InputModals();
+                inputModal.UpdateModal(accts, acc, table, model, rowIndex);
                 
             }
         });
