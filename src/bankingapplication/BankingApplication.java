@@ -28,7 +28,7 @@ public class BankingApplication extends JFrame {
     private static int accountNo = 1;
     
     String[] columns = new String[] {
-            "account No", "accountType", "branch Name"
+            "account No", "accountType", "branch No", "amount"
         };
     DefaultTableModel model = new DefaultTableModel(columns,0);
     JTable table = new JTable(model);
@@ -179,8 +179,6 @@ public class BankingApplication extends JFrame {
     private javax.swing.JButton addAccountButton;
     private javax.swing.JButton deleteAccountButton;
     private javax.swing.JButton updateAccountButton;
-    private javax.swing.JButton displayAccountButton;
-
 }
 
 
