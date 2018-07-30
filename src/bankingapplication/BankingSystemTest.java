@@ -39,7 +39,7 @@ public class BankingSystemTest {
                     displayAccounts(accts);
                     break;
                 case "update":
-                    //TODO: the update method
+                    updateAccount(input, accts);
                     break;
                 case "cancel":
                     status = false;
@@ -66,7 +66,7 @@ public class BankingSystemTest {
                     int branchID = input.nextInt();
                     acc = new ChequingAccount(accountNo, branchID, amt);
                     accts.addAccount(acc);
-                    System.out.println(acc.toString());
+                    System.out.println(acc.add());
                     status = 1;
                     break;
                 case "cancel":
@@ -89,6 +89,7 @@ public class BankingSystemTest {
             String confirm = input.nextLine();
             switch (confirm) {
                 case "Y":
+                    System.out.println(accts.getAccountViaID(accID).delete());
                     accts.deleteAccount(accts.getAccountViaID(accID));
                     status = 1;
                     break;
@@ -101,6 +102,43 @@ public class BankingSystemTest {
         } while (status == 0);
         return status;
     }//End of method deleteAccount
+    
+    public static int updateAccount(Scanner input, AccountList accts) {
+        int status = 0;
+        int accID = 0;
+        int branchID = 0;
+        do {
+            System.out.print("Please enter the account ID:");
+            accID = Integer.parseInt(input.nextLine());
+            System.out.println("You are updating: " 
+                    + accts.getAccountViaID(accID).toString());
+            System.out.print("Please enter the updated amount:");
+            String strAmount = input.nextLine();
+            double amount = Double.parseDouble(strAmount);
+            System.out.print("Update branch ID? (Y or N)");
+            String confirm = input.nextLine();
+            switch (confirm) {
+                case "Y":
+                    System.out.print("Please enter the updated branchID:");
+                    String strBranchID = input.nextLine();
+                    branchID = Integer.parseInt(strBranchID);
+                    status = 1;
+                    break;
+                case "N":
+                    branchID = accts.getAccountViaID(accID).getBranchID();
+                    status = 2;
+                    break;
+                default:
+                    break;
+            }
+            if (status != 0) {
+                accts.updateAccount(accts.getAccountViaID(accID),branchID, 
+                        amount);
+            }
+        } while (status == 0);
+        System.out.println(accts.getAccountViaID(accID).update());
+        return status;
+    }//End of method updateAccounts
     
     public static void displayAccounts(AccountList accts) {
         System.out.print(accts.getAccounts());
