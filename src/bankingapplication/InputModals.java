@@ -5,51 +5,34 @@
  */
 package bankingapplication;
 
-import javax.swing.JFrame;
-import javax.swing.JTextField;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author jeremye
  */
-public class InputModals extends JFrame implements ModalMethodsInterface {
-    
-    
-    private final AccountList accList;
-    private final String modalType;
+public class InputModals implements ModalMethodsInterface {
         
-    public InputModals(AccountList accList, String modalType){
-
-        this.accList = accList;
-        this.modalType = modalType;
-        
+    public InputModals(){
+ 
     }    
     
     @Override
-    public void AddModal() {
+    public void AddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model) {
         
         AddModal addModal = new AddModal();
-        addModal.showAddModal(this.accList, this.modalType);
+        addModal.showAddModal(accList, modalType, table, model);
+        
     }
 
     @Override
-    public void DeleteModal() {
-        DeleteModal deleteModal = new DeleteModal();
-        deleteModal.showDeleteModal();
-    }
-
-    @Override
-    public void UpdateModal() {
+    public void UpdateModal(AccountList accList, String modalType, JTable table, DefaultTableModel model) {
         AddModal addModal = new AddModal();
+        addModal.showAddModal(accList, modalType, table, model);
         //addModal.showModal();
     }
-
-    @Override
-    public void DidsplayModal() {
-        AddModal addModal = new AddModal();
-        //addModal.showModal();
-    }
-       
+   
 }
 
 

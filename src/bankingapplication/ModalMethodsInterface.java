@@ -5,14 +5,15 @@
  */
 package bankingapplication;
 
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author jeremye
  */
 public interface ModalMethodsInterface {
-    public void AddModal();
-    public void DeleteModal();
-    public void UpdateModal();
-    public void DidsplayModal();
-    
+    public void AddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model);
+    public void UpdateModal(AccountList accList, String modalType, JTable table, DefaultTableModel model);
+        
 }

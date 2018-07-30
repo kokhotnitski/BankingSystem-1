@@ -11,7 +11,6 @@ import java.util.List;
 
 public class AccountList implements BankOperations {
     private List<Account> accounts = new ArrayList<Account>();
-    
     public AccountList() {
         
     }
@@ -52,4 +51,5 @@ public class AccountList implements BankOperations {
         infoOut = info.toString();
         return infoOut;
     }
+    
 }

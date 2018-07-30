@@ -12,7 +12,9 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,9 +27,9 @@ public class AddModal extends DataTypeConvertor{
     static JTextField textField3;
     
     
-    public void showAddModal(AccountList accList, String modalType){
+    public void showAddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model){
                 
-        showFrame textFieldFrame = new showFrame(accList, modalType);
+        showFrame textFieldFrame = new showFrame(accList, modalType, table, model);
         textFieldFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         textFieldFrame.setResizable(false);
         textFieldFrame.setSize(250, 300);
@@ -38,12 +40,12 @@ public class AddModal extends DataTypeConvertor{
 }
 class showFrame extends JFrame {
     
-    private  JLabel label1;
-    private  JLabel label2;
-    private  JLabel label3;
-    private  JButton addDetails;
+    private final  JLabel label1;
+    private final  JLabel label2;
+    private final  JLabel label3;
+    private final  JButton addDetails;
     
-    public showFrame(AccountList accList, String modalType){
+    public showFrame(AccountList accList, String modalType, JTable table, DefaultTableModel model){
         
         //still busy wtih this development
         
@@ -91,6 +93,11 @@ class showFrame extends JFrame {
                 //call to modal to enter details
                 Account acc = new ChequingAccount(accountNo, branchID, amt);
                 accList.addAccount(acc);
+                
+                String[] row = {AddModal.textField1.getText(),AddModal.textField2.getText(),AddModal.textField3.getText()};
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                model.addRow(row);
+                
                 dispose();
                 
             }
@@ -107,11 +114,6 @@ class showFrame extends JFrame {
         
     }
 
-}
-
-class tester11 extends DataTypeConvertor {
-    boolean rt = CheckInteger("123");
-    
 }
 
 
