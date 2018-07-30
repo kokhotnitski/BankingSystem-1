@@ -9,7 +9,7 @@ package bankingapplication;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountList implements BankOperations {
+public class AccountList implements BankOperations{
     private List<Account> accounts = new ArrayList<Account>();
     public AccountList() {
         
@@ -32,13 +32,14 @@ public class AccountList implements BankOperations {
         a.setAmount(amount);
     }
     
-    public Account getAccountViaID(int accID) {
+    public Account getAccountViaID(int accID) throws CustomExceptions{
         for (Account a : accounts) {
             if(a.getAccountID() == accID) {
                 return a;
             }
         }
-        return null;
+        throw new CustomExceptions("there is a problem please check again");
+        //return null;
     }
     
     public String getAccounts() {

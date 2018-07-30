@@ -26,6 +26,21 @@ public abstract class DataTypeConvertor {
        }
     }
     
+    public static boolean CheckDouble(String input)
+    {
+       try
+       {
+          //here we try and parse the string character as an integer if is succeeds it will return true shown below
+          Double.parseDouble(input);
+          return true;
+       }
+       catch(NumberFormatException exp)
+       {
+          //the character failed to parse as a integer returning a false value
+          return false;
+       }
+    }
+    
     public static int convertToInteger(String inputValue){
         return Integer.parseInt(inputValue);
     }

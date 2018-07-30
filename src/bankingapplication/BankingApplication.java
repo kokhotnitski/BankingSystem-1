@@ -13,6 +13,7 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
@@ -92,13 +93,13 @@ public class BankingApplication extends JFrame {
         addAccountButton.setText("Add Account");
         addAccountButton.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         
-        
+               
         addAccountButton.setPreferredSize(new Dimension(200, 30));
         addAccountButton.setToolTipText("Add account.");
         
         addAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                
+                    
                 //call to modal to enter details
                 InputModals inputModal = new InputModals();
                 inputModal.AddModal(accts, "add", table, model);
@@ -118,14 +119,25 @@ public class BankingApplication extends JFrame {
         deleteAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
+                
                 //remowe account from table
                 int rowIndex = table.getSelectedRow();
-                model.removeRow(rowIndex);
-                
+                if(rowIndex == -1)return;
+                                
                 //remove account from arraylist
                 int accountNo = AddModal.convertToInteger(model.getValueAt(rowIndex, 0).toString());
-                Account acc = accts.getAccountViaID(accountNo);
-                accts.deleteAccount(acc);
+                
+                try{
+                
+                    Account acc = accts.getAccountViaID(accountNo);
+                    accts.deleteAccount(acc);
+
+                    model.removeRow(rowIndex);
+                    
+                }catch(CustomExceptions e){
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Incorrect input", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 
                 
             }
@@ -146,15 +158,23 @@ public class BankingApplication extends JFrame {
                 
                 //get value account from table
                 int rowIndex = table.getSelectedRow();
+                if(rowIndex == -1)return;
                                                 
                 //get account from arraylist
                 int accountNo = AddModal.convertToInteger(model.getValueAt(rowIndex, 0).toString());
-                Account acc = accts.getAccountViaID(accountNo);
                 
+                try{
+                    Account acc = accts.getAccountViaID(accountNo);
+
+
+                    //call to update modal
+                    InputModals inputModal = new InputModals();
+                    inputModal.UpdateModal(accts, acc, table, model, rowIndex);
                 
-                //call to update modal
-                InputModals inputModal = new InputModals();
-                inputModal.UpdateModal(accts, acc, table, model, rowIndex);
+                }catch(CustomExceptions e){
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Incorrect input", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
                 
             }
         });

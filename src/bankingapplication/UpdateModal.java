@@ -94,6 +94,9 @@ class showUpdateFrame extends JFrame {
                 
                 accList.deleteAccount(acc);
                 
+                if(AddModal.CheckInteger(AddModal.textField3.getText()) == false)return;
+                if(AddModal.CheckDouble(AddModal.textField2.getText()) == false)return;
+                
                 int accountNo = acc.getAccountID();
                 int branchId = AddModal.convertToInteger(AddModal.textField3.getText());
                 Double amount = AddModal.convertToDouble(AddModal.textField2.getText());

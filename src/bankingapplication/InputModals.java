@@ -19,7 +19,7 @@ public class InputModals implements ModalMethodsInterface {
     }    
     
     @Override
-    public void AddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model) {
+    public void AddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model)  {
         
         AddModal addModal = new AddModal();
         addModal.showAddModal(accList, modalType, table, model);

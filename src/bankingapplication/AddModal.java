@@ -27,14 +27,15 @@ public class AddModal extends DataTypeConvertor{
     static JTextField textField2;
     static JTextField textField3;
      
-    public void showAddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model){
-                
+    public void showAddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model) {
+                       
         showFrame textFieldFrame = new showFrame(accList, modalType, table, model);
         textFieldFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         textFieldFrame.setResizable(false);
         textFieldFrame.setSize(250, 300);
         textFieldFrame.setLocation();
         textFieldFrame.setVisible(true);
+        
     }
     
 }
@@ -45,13 +46,12 @@ class showFrame extends JFrame {
     private final  JLabel label3;
     private final  JButton addDetails;
     
-    public showFrame(AccountList accList, String modalType, JTable table, DefaultTableModel model){
+    public showFrame(AccountList accList, String modalType, JTable table, DefaultTableModel model) {
         
         //still busy wtih this development
         
         setLayout(new FlowLayout(FlowLayout.LEFT, 20, 10));
 
-        
         //this is a label
         label1 = new JLabel("Type of account:");
         add(label1);
@@ -81,7 +81,7 @@ class showFrame extends JFrame {
         addDetails.setAlignmentX(Component.CENTER_ALIGNMENT);
         add(addDetails);
         
-        
+                
         addDetails.addActionListener(new java.awt.event.ActionListener() {
             
             //Kirill: Edited this method
@@ -89,9 +89,14 @@ class showFrame extends JFrame {
                 
                 boolean status = true; //control for adding the data
                 
+                if(AddModal.CheckInteger(AddModal.textField3.getText()) == false)return;
+                if(AddModal.CheckDouble(AddModal.textField2.getText()) == false)return;
+                
                 int accountNo = BankingApplication.getAccountNo();
                 int branchId = AddModal.convertToInteger(AddModal.textField3.getText());
+                
                 Double amount = AddModal.convertToDouble(AddModal.textField2.getText());
+                
                 String accountType = AddModal.textField1.getText();
                 Account acc;
                 switch(accountType.toLowerCase()) {
@@ -130,9 +135,11 @@ class showFrame extends JFrame {
                     JOptionPane.showMessageDialog(null, "The inputted account "
                             + "type is unknown.", "Unknown account type", 
                             JOptionPane.ERROR_MESSAGE);
+                    
                 }
             }
         });
+        
         
     }
     
