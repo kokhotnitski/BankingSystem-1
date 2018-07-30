@@ -18,32 +18,31 @@ import javax.swing.JTextField;
  *
  * @author jeremye
  */
-public class AddModal extends DataTypeConvertor{
+public class DeleteModal {
     
     static JTextField textField1;
     static JTextField textField2;
     static JTextField textField3;
     
-    
-    public void showAddModal(AccountList accList, String modalType){
-                
-        showFrame textFieldFrame = new showFrame(accList, modalType);
+    public void showDeleteModal(){
+        showDeleteFrame textFieldFrame = new showDeleteFrame();
         textFieldFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         textFieldFrame.setResizable(false);
-        textFieldFrame.setSize(250, 300);
+        textFieldFrame.setSize(250, 150);
         textFieldFrame.setLocation();
         textFieldFrame.setVisible(true);
     }
     
 }
-class showFrame extends JFrame {
+
+class showDeleteFrame extends JFrame{
     
     private  JLabel label1;
     private  JLabel label2;
     private  JLabel label3;
     private  JButton addDetails;
     
-    public showFrame(AccountList accList, String modalType){
+    public showDeleteFrame(){
         
         //still busy wtih this development
         
@@ -55,24 +54,8 @@ class showFrame extends JFrame {
         add(label1);
         
         //this is a textfield to input values
-        AddModal.textField1 = new JTextField(10);
-        add(AddModal.textField1); // add textField1 to JFrame
-        
-         //this is a label
-        label2 = new JLabel("Enter the amount");
-        add(label2);
-        
-        //this is a textfield to input values
-        AddModal.textField2 = new JTextField(10);
-        add(AddModal.textField2);
-        
-         //this is a label
-        label3 = new JLabel("enter the branch ID");
-        add(label3);
-        
-        //this is a textfield to input values
-        AddModal.textField3 = new JTextField(10);
-        add(AddModal.textField3);
+        DeleteModal.textField1 = new JTextField(10);
+        add(DeleteModal.textField1); // add textField1 to JFrame
         
         //this is a button to submit details
         addDetails = new JButton("Submit");
@@ -81,20 +64,15 @@ class showFrame extends JFrame {
         
         
         addDetails.addActionListener(new java.awt.event.ActionListener() {
-            
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                int accountNo = AddModal.convertToInteger(AddModal.textField1.getText());
-                int branchID = AddModal.convertToInteger(AddModal.textField2.getText());
-                Double amt = AddModal.convertToDouble(AddModal.textField3.getText());
-                
                 //call to modal to enter details
-                Account acc = new ChequingAccount(accountNo, branchID, amt);
-                accList.addAccount(acc);
-                dispose();
+                //Account acc = new ChequingAccount(accountNo, branchID, amt);
+                    //this.accList.addAccount(acc);
+                
+                               
                 
             }
-            
         });
         
     }
@@ -108,10 +86,3 @@ class showFrame extends JFrame {
     }
 
 }
-
-class tester11 extends DataTypeConvertor {
-    boolean rt = CheckInteger("123");
-    
-}
-
-

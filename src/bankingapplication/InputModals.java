@@ -14,9 +14,6 @@ import javax.swing.JTextField;
  */
 public class InputModals extends JFrame implements ModalMethodsInterface {
     
-    static JTextField textField1;
-    static JTextField textField2;
-    static JTextField textField3;
     
     private final AccountList accList;
     private final String modalType;
@@ -32,22 +29,25 @@ public class InputModals extends JFrame implements ModalMethodsInterface {
     public void AddModal() {
         
         AddModal addModal = new AddModal();
-        addModal.showModal();
+        addModal.showAddModal(this.accList, this.modalType);
     }
 
     @Override
     public void DeleteModal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DeleteModal deleteModal = new DeleteModal();
+        deleteModal.showDeleteModal();
     }
 
     @Override
     public void UpdateModal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AddModal addModal = new AddModal();
+        //addModal.showModal();
     }
 
     @Override
     public void DidsplayModal() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        AddModal addModal = new AddModal();
+        //addModal.showModal();
     }
        
 }
