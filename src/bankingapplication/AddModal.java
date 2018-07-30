@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -87,26 +88,53 @@ class showFrame extends JFrame {
             //Kirill: Edited this method
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
+                boolean status = true; //control for adding the data
+
+                
                 int accountNo = BankingApplication.getAccountNo();
                 int branchId = AddModal.convertToInteger(AddModal.textField2.getText());
-                
-                String accountType = AddModal.textField1.getText();
                 Double amount = AddModal.convertToDouble(AddModal.textField3.getText());
+                String accountType = AddModal.textField1.getText();
+                Account acc;
+                switch(accountType) {
+                    case "chequing":
+                        //insert data into arraylist
+                        acc = new ChequingAccount(accountNo, branchId, amount);
+                        accList.addAccount(acc);
+                        break;
+                    case "credit":
+                        acc = new CreditAccount(accountNo, branchId, amount);
+                        accList.addAccount(acc);
+                        break;
+                    case "loan":
+                        acc = new LoanAccount(accountNo, branchId, amount);
+                        accList.addAccount(acc);
+                        break;
+                    case "savings":
+                        acc = new SavingsAccount(accountNo, branchId, amount);
+                        accList.addAccount(acc);
+                        break;
+                    default:
+                        status = false;
+                        break;
+                }
                 
-                //insert data into arraylist
-                Account acc = new ChequingAccount(accountNo, branchId, amount);
-                accList.addAccount(acc);
-                
-                //add imput values to the table
-                String[] row = {Integer.toString(accountNo) , accountType, AddModal.textField3.getText()};
-                DefaultTableModel model = (DefaultTableModel) table.getModel();
-                model.addRow(row);
-                BankingApplication.setAccountNo(++accountNo);
-                
-                dispose();
-                
+
+                if(status == true){
+                    //add imput values to the table
+                    String[] row = {Integer.toString(accountNo) , accountType, AddModal.textField3.getText()};
+                    DefaultTableModel model = (DefaultTableModel) table.getModel();
+                    model.addRow(row);
+                    BankingApplication.setAccountNo(++accountNo);
+
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Unknown account type",
+                            "The inputted account type is unknown.", 
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
             }
-            
         });
         
     }
