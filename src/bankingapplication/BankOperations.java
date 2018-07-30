@@ -9,5 +9,5 @@ package bankingapplication;
 public interface BankOperations {
     public void addAccount(Account a);
     public void deleteAccount(Account a);
-    public void updateAccount(Account a);
+    public void updateAccount(Account a, int branchID, double amount);
 }

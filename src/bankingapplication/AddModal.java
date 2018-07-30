@@ -89,6 +89,7 @@ class showFrame extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 boolean status = true; //control for adding the data
+
                 
                 int accountNo = BankingApplication.getAccountNo();
                 int branchId = AddModal.convertToInteger(AddModal.textField2.getText());
@@ -118,6 +119,7 @@ class showFrame extends JFrame {
                         break;
                 }
                 
+
                 if(status == true){
                     //add imput values to the table
                     String[] row = {Integer.toString(accountNo) , accountType, AddModal.textField3.getText()};
@@ -131,6 +133,7 @@ class showFrame extends JFrame {
                             "The inputted account type is unknown.", 
                             JOptionPane.ERROR_MESSAGE);
                 }
+
             }
         });
         

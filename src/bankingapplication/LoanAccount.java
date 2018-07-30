@@ -1,19 +1,21 @@
 /*
- Account.java
- Kirill Viktorovich Okhotnitski
- 26 July 2018
- This package uses JDK v1.8.0_171
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
  */
 package bankingapplication;
 
-public class ChequingAccount extends Account {
-    
+/**
+ *
+ * @author Kirill
+ */
+public class LoanAccount extends Account {
     private String accountType;
     
-    public ChequingAccount(int accountID, int branchID, double amount) 
+    public LoanAccount(int accountID, int branchID, double amount) 
     {
         super(accountID, branchID, amount);
-        accountType = "Chequing";
+        accountType = "Loan";
     }
     
     public String getAccountType() {
