@@ -84,12 +84,11 @@ class showFrame extends JFrame {
         
         addDetails.addActionListener(new java.awt.event.ActionListener() {
             
+            //Kirill: Edited this method
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                //this still has to be created with the class waiting for Kirill
-                int accountNo = 123456;
-                int branchId = 1111111;
-                //***********************************************
+                int accountNo = BankingApplication.getAccountNo();
+                int branchId = AddModal.convertToInteger(AddModal.textField2.getText());
                 
                 String accountType = AddModal.textField1.getText();
                 Double amount = AddModal.convertToDouble(AddModal.textField3.getText());
@@ -99,9 +98,10 @@ class showFrame extends JFrame {
                 accList.addAccount(acc);
                 
                 //add imput values to the table
-                String[] row = {"123456" , accountType, AddModal.textField3.getText()};
+                String[] row = {Integer.toString(accountNo) , accountType, AddModal.textField3.getText()};
                 DefaultTableModel model = (DefaultTableModel) table.getModel();
                 model.addRow(row);
+                BankingApplication.setAccountNo(++accountNo);
                 
                 dispose();
                 
