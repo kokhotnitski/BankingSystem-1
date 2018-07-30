@@ -24,7 +24,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BankingApplication extends JFrame {
     AccountList accts = new AccountList(); //List for all the accounts
-
+    //Kirill: New variable
+    private static int accountNo = 1;
+    
     String[] columns = new String[] {
             "account No", "accountType", "branch Name"
         };
@@ -161,6 +163,16 @@ public class BankingApplication extends JFrame {
     private static void exitForm(java.awt.event.WindowEvent evt) {                          
         System.exit(0);
     }  
+    
+    //Kirill: New Method
+    public static int getAccountNo() {
+        return accountNo;
+    }
+    
+    //Kirill: New Method   
+    public static void setAccountNo(int accountNo) {
+        BankingApplication.accountNo = accountNo;
+    }
     
     private javax.swing.JPanel mainPanel;
     
