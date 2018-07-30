@@ -26,8 +26,7 @@ public class AddModal extends DataTypeConvertor{
     static JTextField textField1;
     static JTextField textField2;
     static JTextField textField3;
-    
-    
+     
     public void showAddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model){
                 
         showFrame textFieldFrame = new showFrame(accList, modalType, table, model);
@@ -89,11 +88,10 @@ class showFrame extends JFrame {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 boolean status = true; //control for adding the data
-
                 
                 int accountNo = BankingApplication.getAccountNo();
-                int branchId = AddModal.convertToInteger(AddModal.textField2.getText());
-                Double amount = AddModal.convertToDouble(AddModal.textField3.getText());
+                int branchId = AddModal.convertToInteger(AddModal.textField3.getText());
+                Double amount = AddModal.convertToDouble(AddModal.textField2.getText());
                 String accountType = AddModal.textField1.getText();
                 Account acc;
                 switch(accountType) {
@@ -119,27 +117,24 @@ class showFrame extends JFrame {
                         break;
                 }
                 
-
                 if(status == true){
                     //add imput values to the table
-                    String[] row = {Integer.toString(accountNo) , accountType, AddModal.textField3.getText()};
+                    String[] row = {Integer.toString(accountNo) , accountType,
+                        AddModal.textField3.getText(), 
+                        AddModal.textField2.getText()};
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
                     model.addRow(row);
                     BankingApplication.setAccountNo(++accountNo);
-
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Unknown account type",
-                            "The inputted account type is unknown.", 
+                    JOptionPane.showMessageDialog(null, "The inputted account "
+                            + "type is unknown.", "Unknown account type", 
                             JOptionPane.ERROR_MESSAGE);
                 }
-
             }
         });
         
     }
-    
-    
     
     void setLocation() {
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
