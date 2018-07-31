@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author jeremye
  */
-public class UpdateModal {
+public class UpdateModal extends DataTypeConvertor {
     
     static JTextField textField1;
     static JTextField textField2;
@@ -57,24 +57,24 @@ class showUpdateFrame extends JFrame {
         add(label1);
         
         //this is a textfield to input values
-        AddModal.textField1 = new JTextField(10);
-        add(AddModal.textField1); // add textField1 to J
+        UpdateModal.textField1 = new JTextField(10);
+        add(UpdateModal.textField1); // add textField1 to J
         
          //this is a label
         label2 = new JLabel("Enter the amount");
         add(label2);
         
         //this is a textfield to input values
-        AddModal.textField2 = new JTextField(10);
-        add(AddModal.textField2);
+        UpdateModal.textField2 = new JTextField(10);
+        add(UpdateModal.textField2);
         
          //this is a label
         label3 = new JLabel("enter the branch ID");
         add(label3);
         
         //this is a textfield to input values
-        AddModal.textField3 = new JTextField(10);
-        add(AddModal.textField3);
+        UpdateModal.textField3 = new JTextField(10);
+        add(UpdateModal.textField3);
         
         //this is to preset the values at the text fields
         setText(acc, model, rowIndex);
@@ -94,17 +94,18 @@ class showUpdateFrame extends JFrame {
                 
                 accList.deleteAccount(acc);
                 
-                if(AddModal.CheckInteger(AddModal.textField3.getText()) == false)return;
-                if(AddModal.CheckDouble(AddModal.textField2.getText()) == false)return;
+                if(UpdateModal.CheckInteger(UpdateModal.textField3.getText()) == false)return;
+                if(UpdateModal.CheckDouble(UpdateModal.textField2.getText()) == false)return;
                 
                 int accountNo = acc.getAccountID();
-                int branchId = AddModal.convertToInteger(AddModal.textField3.getText());
-                Double amount = AddModal.convertToDouble(AddModal.textField2.getText());
-                String accountType = AddModal.textField1.getText();
+                int branchId = UpdateModal.convertToInteger(UpdateModal.textField3.getText());
+                Double amount = UpdateModal.convertToDouble(UpdateModal.textField2.getText());
+                String accountType = UpdateModal.textField1.getText();
                 Account acc;
                 switch(accountType.toLowerCase()) {
                     case "chequing":
                         //insert data into arraylist
+                        
                         acc = new ChequingAccount(accountNo, branchId, amount);
                         accList.addAccount(acc);
                         break;
@@ -128,8 +129,8 @@ class showUpdateFrame extends JFrame {
                 if(status == true){
                     //add imput values to the table
                     String[] row = {Integer.toString(accountNo) , accountType,
-                        AddModal.textField3.getText(), 
-                        AddModal.textField2.getText()};
+                        UpdateModal.textField3.getText(), 
+                        UpdateModal.textField2.getText()};
                     DefaultTableModel model = (DefaultTableModel) table.getModel();
                     
                     model.removeRow(rowIndex);
@@ -153,23 +154,23 @@ class showUpdateFrame extends JFrame {
         
         if("chequing".equals(accountType)){
             ChequingAccount chequeAcc = (ChequingAccount) acc;
-            AddModal.textField1.setText(chequeAcc.getAccountType());
+            UpdateModal.textField1.setText(chequeAcc.getAccountType());
         }
         if("credit".equals(accountType)){
             CreditAccount creditAcc = (CreditAccount) acc;
-            AddModal.textField1.setText(creditAcc.getAccountType());
+            UpdateModal.textField1.setText(creditAcc.getAccountType());
         }
         if("loan".equals(accountType)){
             LoanAccount loanAcc = (LoanAccount) acc;
-            AddModal.textField1.setText(loanAcc.getAccountType());
+            UpdateModal.textField1.setText(loanAcc.getAccountType());
         }
         if("savings".equals(accountType)){
             SavingsAccount savingAcc = (SavingsAccount) acc;
-            AddModal.textField1.setText(savingAcc.getAccountType());
+            UpdateModal.textField1.setText(savingAcc.getAccountType());
         }
         
-        AddModal.textField2.setText(AddModal.convertToString(acc.getAmount()));
-        AddModal.textField3.setText(AddModal.convertToString(acc.getBranchID()));
+        UpdateModal.textField2.setText(AddModal.convertToString(acc.getAmount()));
+        UpdateModal.textField3.setText(AddModal.convertToString(acc.getBranchID()));
 
         
         
