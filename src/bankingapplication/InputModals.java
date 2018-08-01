@@ -1,41 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ InputModals.java
+ Jeremy Engelbrecht
+ Kirill Viktorovich Okhotnitski
+ 1 August 2018
+ This class is the abstract class for all types of input modals. It implements
+ ModalMethodsInterface and overrides it's methods to instantiate modal objects
+ for use in the program.
+ This application uses JDK v1.8.0_171.
  */
 package bankingapplication;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jeremye
- */
 public class InputModals implements ModalMethodsInterface {
         
     public InputModals(){
- 
     }    
     
     @Override
     public void AddModal(AccountList accList, String modalType, JTable table, DefaultTableModel model)  {
         
         AddModal addModal = new AddModal();
-        addModal.showAddModal(accList, modalType, table, model);
-        
+        addModal.showAddModal(accList, modalType, table, model);    
     }
-
+    
     @Override
     public void UpdateModal(AccountList accList, Account acc, JTable table, DefaultTableModel model, int rowIndex) {
         UpdateModal addModal = new UpdateModal();
-        addModal.showUpdateModal(accList, acc, table, model, rowIndex);
-        
+        addModal.showUpdateModal(accList, acc, table, model, rowIndex);    
     }
-   
 }
-
-
-
-
-
