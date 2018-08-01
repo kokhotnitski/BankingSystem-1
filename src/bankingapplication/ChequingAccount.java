@@ -1,8 +1,11 @@
 /*
- Account.java
+ ChequingAccount.java
+ Jeremy Engelbrecht
  Kirill Viktorovich Okhotnitski
- 26 July 2018
- This package uses JDK v1.8.0_171
+ 1 August 2018
+ This class is a concrete class of Account.java. It adds the variable 
+ accountType and overrides the abstract classes of Account.java.
+ This application uses JDK v1.8.0_171.
  */
 package bankingapplication;
 
@@ -10,12 +13,14 @@ public class ChequingAccount extends Account {
     
     private String accountType;
     
+    //Constructor.
     public ChequingAccount(int accountID, int branchID, double amount) 
     {
         super(accountID, branchID, amount);
         accountType = "Chequing";
     }
     
+    //Getters and setters.
     public String getAccountType() {
         return accountType;
     }
@@ -24,6 +29,7 @@ public class ChequingAccount extends Account {
         this.accountType = accountType;
     }
     
+    //Overriden methods.
     @Override
     public String add() { 
         return String.format("%s has been added.", toString());
