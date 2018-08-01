@@ -48,10 +48,8 @@ class showFrame extends JFrame {
     private final  JLabel label1;
     private final  JLabel label2;
     private final  JLabel label3;
-    private final  JLabel label4;
     private final  JLabel spaceLabel1;
     private final  JLabel spaceLabel2;
-    private final  JLabel spaceLabel3;
     private final  JButton addDetails;
     private final  JComboBox<String> accountTypeComboBox;
     
@@ -95,16 +93,7 @@ class showFrame extends JFrame {
         //Space label for proper sizing of components.
         spaceLabel2 = new JLabel(SPACE);
         add(spaceLabel2);
-        
-        //Account number label, value taken from BankingApplication.java.
-        label4 = new JLabel(String.format("Account No: %d", 
-                BankingApplication.getAccountNo()));
-        add(label4);
-        
-        //Space label for proper sizing of components.
-        spaceLabel3 = new JLabel(SPACE);
-        add(spaceLabel3);
-        
+
         //Submit button.
         addDetails = new JButton("Submit");
         addDetails.setAlignmentX(Component.CENTER_ALIGNMENT);
