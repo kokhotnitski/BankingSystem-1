@@ -1,8 +1,10 @@
 /*
- Account.java
+ BankOperations.java
+ Jeremy Engelbrecht
  Kirill Viktorovich Okhotnitski
- 26 July 2018
- This package uses JDK v1.8.0_171
+ 1 August 2018
+ This interface is used for handling operations on account objects.
+ This application uses JDK v1.8.0_171.
  */
 package bankingapplication;
 
