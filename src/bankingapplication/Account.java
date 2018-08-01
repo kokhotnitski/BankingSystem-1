@@ -1,8 +1,12 @@
 /*
  Account.java
+ Jeremy Engelbrecht
  Kirill Viktorovich Okhotnitski
- 26 July 2018
- This package uses JDK v1.8.0_171
+ 1 August 2018
+ This class is the abstract class for all types of accounts. It holds the 
+ account number, branch number and amount variables. As well it has getters and
+ setters for the variables.
+ This application uses JDK v1.8.0_171.
  */
 package bankingapplication;
 
@@ -11,13 +15,20 @@ public abstract class Account {
     private int branchID;
     private double amount;
     
-    //constructor
+    //Constructor.
     public Account(int accountID, int branchID, double amount) {
         this.accountID = accountID;
         this.branchID = branchID;
-        this.amount = amount;
+        //Accepts positive and negative amounts, truncates value to 2 decimal
+        //places.
+        if(amount >= 0) {
+            this.amount = Math.floor(amount * 100) / 100;
+        } else {
+            this.amount = Math.ceil(amount * 100) / 100;
+        }
     }
     
+    //Getters and setters.
     public int getAccountID() {
         return accountID;
     }
@@ -42,6 +53,7 @@ public abstract class Account {
         this.amount = amount;
     }
     
+    //Abstract methods.
     public abstract String add();
     public abstract String update();
     public abstract String delete();
