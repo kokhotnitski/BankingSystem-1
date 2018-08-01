@@ -1,7 +1,15 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ BankingApplication.java
+ Jeremy Engelbrecht
+ Kirill Viktorovich Okhotnitski
+ 1 August 2018
+ This application runs a bank account management GUI. The GUI displays several
+ accounts that shows the account number, account type, branch number and the 
+ amount. Accounts can be added, updated and deleted and are always displayed on
+ the main window. This class is the static main class that begins the 
+ application. It handles the main window, and calls upon the other classes to
+ handle the rest of the operations.
+ This application uses JDK v1.8.0_171
  */
 package bankingapplication;
 
@@ -19,13 +27,8 @@ import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author jeremye
- */
 public class BankingApplication extends JFrame {
-    AccountList accts = new AccountList(); //List for all the accounts
-    //Kirill: New variable
+    AccountList accts = new AccountList(); //List for all the accounts.
     private static int accountNo = 1;
     
     String[] columns = new String[] {
@@ -34,23 +37,18 @@ public class BankingApplication extends JFrame {
     DefaultTableModel model = new DefaultTableModel(columns,0);
     JTable table = new JTable(model);
     
-     /**
-     * @param args the command line arguments
-     */
+    //Application begins here:
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-                       
-        /* Create and display the form */
+        //Create and display the form.
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new BankingApplication().setVisible(true);
             }
-        });
-        
+        });  
     }
     
-    //BankingApplication Constructor
+    //BankingApplication Constructor.
     public BankingApplication(){
         
         initComponents();
@@ -60,11 +58,10 @@ public class BankingApplication extends JFrame {
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize = getSize();
         setLocation(new Point((screenSize.width - frameSize.width) / 2,
-                              (screenSize.height - frameSize.width) / 2));
-        
-           
+                              (screenSize.height - frameSize.width) / 2));     
     }
     
+    //This method initiates all the buttons, button events and the table. 
     private void initComponents() {  
         
         GridBagConstraints c = new GridBagConstraints();
@@ -77,6 +74,7 @@ public class BankingApplication extends JFrame {
         
         setTitle("Banking Management");
         addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 exitForm(evt);
             }
@@ -97,10 +95,11 @@ public class BankingApplication extends JFrame {
         addAccountButton.setPreferredSize(new Dimension(200, 30));
         addAccountButton.setToolTipText("Add account.");
         
+        //Add account action.
         addAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                     
-                //call to modal to enter details
+                //Calls add modal to handle the add account button event.
                 InputModals inputModal = new InputModals();
                 inputModal.AddModal(accts, "add", table, model);
                 
@@ -116,15 +115,16 @@ public class BankingApplication extends JFrame {
         deleteAccountButton.setPreferredSize(new Dimension(200, 30));
         deleteAccountButton.setToolTipText("Delete account.");
         
+        //Delete account action.
         deleteAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
                 
-                //remowe account from table
+                //Removes the account from the table.
                 int rowIndex = table.getSelectedRow();
-                if(rowIndex == -1)return;
+                if(rowIndex == -1)return; //Exception if there is no account.
                                 
-                //remove account from arraylist
+                //Remove account from account list.
                 int accountNo = AddModal.convertToInteger(model.getValueAt(rowIndex, 0).toString());
                 
                 try{
@@ -138,8 +138,6 @@ public class BankingApplication extends JFrame {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Incorrect input", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
-                
             }
         });
 
@@ -147,27 +145,26 @@ public class BankingApplication extends JFrame {
         c.gridy = 1;
         mainPanel.add(deleteAccountButton, c);
         
-        
         updateAccountButton.setText("Update Account");
         updateAccountButton.setAlignmentX(JLabel.RIGHT_ALIGNMENT);
         updateAccountButton.setPreferredSize(new Dimension(200, 30));
         updateAccountButton.setToolTipText("Update account.");
         
+        //Update account action.
         updateAccountButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 
-                //get value account from table
+                //Get value account from table.
                 int rowIndex = table.getSelectedRow();
                 if(rowIndex == -1)return;
                                                 
-                //get account from arraylist
+                //Get account from account list.
                 int accountNo = AddModal.convertToInteger(model.getValueAt(rowIndex, 0).toString());
                 
                 try{
                     Account acc = accts.getAccountViaID(accountNo);
 
-
-                    //call to update modal
+                    //Call update modal to handle update action.
                     InputModals inputModal = new InputModals();
                     inputModal.UpdateModal(accts, acc, table, model, rowIndex);
                 
@@ -175,7 +172,6 @@ public class BankingApplication extends JFrame {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Incorrect input", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
             }
         });
 
@@ -184,23 +180,20 @@ public class BankingApplication extends JFrame {
         mainPanel.add(updateAccountButton, c);
         getContentPane().add(mainPanel, java.awt.BorderLayout.CENTER);
          
-        //add the table to the frame
+        //Add the table to the frame.
         c.gridx = 0;
         c.gridy = 4;
         mainPanel.add(new JScrollPane(table),c);
-        
     }    
      
     private static void exitForm(java.awt.event.WindowEvent evt) {                          
         System.exit(0);
     }  
     
-    //Kirill: New Method
     public static int getAccountNo() {
         return accountNo;
     }
-    
-    //Kirill: New Method   
+  
     public static void setAccountNo(int accountNo) {
         BankingApplication.accountNo = accountNo;
     }
@@ -211,5 +204,3 @@ public class BankingApplication extends JFrame {
     private javax.swing.JButton deleteAccountButton;
     private javax.swing.JButton updateAccountButton;
 }
-
-
